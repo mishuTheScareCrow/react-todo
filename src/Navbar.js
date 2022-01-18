@@ -1,7 +1,14 @@
 import logo from "./logo.svg";
 import { Link } from "react-router-dom";
+import NavItem from "./NavItem";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [items, setItems] = useState([
+    { name: "Home", link: "/", id: 1 },
+    { name: "Create", link: "/create", id: 2 },
+    { name: "Archive", link: "/archive", id: 3 },
+  ]);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -9,18 +16,7 @@ const Navbar = () => {
           <img src={logo} alt="" width="30" height="24" />
           Todo
         </Link>
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Create
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Archive
-            </Link>
-          </li>
-        </ul>
+        <NavItem items={items} />
       </div>
     </nav>
   );
