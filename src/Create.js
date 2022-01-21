@@ -13,6 +13,8 @@ const Create = () => {
     }).then(() => {
       console.log("New Task Added");
     });
+    setTitle("");
+    setBody("");
   };
 
   return (

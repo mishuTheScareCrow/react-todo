@@ -10,7 +10,7 @@ const Navbar = () => {
     { name: "Archive", link: "/archive", id: 3 },
   ]);
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
       <div className="container">
         <Link className="navbar-brand" to="/">
           <img src={logo} alt="" width="30" height="24" />
