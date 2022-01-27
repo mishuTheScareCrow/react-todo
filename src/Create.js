@@ -1,21 +1,24 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    const task = { title, body };
-    fetch("http://localhost:8001/tasks", {
+    const task = { title, body, done: false };
+    fetch("http://localhost:8000/tasks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(task),
     }).then(() => {
-      console.log("New Task Added");
+      history.push("/");
     });
     setTitle("");
     setBody("");
   };
+
+  const history = useHistory();
 
   return (
     <section>
@@ -34,7 +37,7 @@ const Create = () => {
                   <textarea className="form-control" rows="3" value={body} onChange={(e) => setBody(e.target.value)} required />
                 </div>
                 <div className="col-auto">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
                     Add Task
                   </button>
                 </div>

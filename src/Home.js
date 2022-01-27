@@ -5,14 +5,15 @@ const Home = () => {
   const [tasks, setTasks] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/tasks")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setTasks(data);
-        console.log(data);
-      });
+    setTimeout(() => {
+      fetch("http://localhost:8000/tasks")
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setTasks(data);
+        });
+    }, 200);
   }, []);
 
   return (
@@ -24,7 +25,8 @@ const Home = () => {
               <h5 className="mb-0">Tasks</h5>
               <h5 className="mb-0">Action</h5>
             </div>
-            {tasks && <List tasks={tasks} />}
+            {tasks && <List tasks={tasks} setTasks={setTasks} />}
+            {(!tasks || tasks.length === 0) && <h2>Loading...</h2>}
           </div>
         </div>
       </div>
